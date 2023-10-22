@@ -1,0 +1,31 @@
+
+
+<div ng-controller="NewsFeedController" id="Body">
+    <div class="container d-flex align-items-center" style="font-size: 12px;margin-top: 20px;">
+        <h5 class="flex-fill">News Feed</h5>
+        <button ng-click="GoTo('newpost')" class="btn btn-primary btn-sm" type="button"><i class="fa fa-plus"></i></button></div>
+    <hr/>
+    <div class="container" style="margin-bottom: 75px;">
+        <div class="card" ng-repeat="Post in Posts" style="margin-bottom: 15px;">
+            <div class="card-body" style="padding-top: 10px;">
+                <div class="row" style="margin-bottom: 15px;margin-left: -10px;">
+                    <div class="col-auto" style="padding: 0px;">
+                        <img class="rounded-circle border shadow-sm" src="assets/img/male_user.png" style="width: 50px;height: 50px;" /></div>
+                    <div class="col">
+                        <h5 class="text-primary">{{Post.PostUser.UserName}}</h5><span ng-show="Post.PostUser.UserType!='Admin'">{{Post.PostUser.Course}} - {{Post.PostUser.Year}} Year</span></div>
+                        <div ng-show="Post.PostUser._id==User._id || User.UserType=='Admin'" class="col-auto" style="padding-right: 5px;padding-left: 5px;">
+                            <button ng-click="Delete(Post)" class="btn btn-danger btn-sm" type="button"><i class="fa fa-remove"></i></button></div>
+                </div>
+                <h6 class="card-title">{{Post.PostTitle}}</h6>
+                <div style="padding: 9px;"><span>{{Post.Description}}</span></div>
+                <a class="card-link text-primary" >
+                    <i class="fa" ng-class="Post.Likes.includes(User._id)?'fa-thumbs-up':'fa-thumbs-o-up'" class="fa"></i> {{Post.Likes.length}}</a>
+                <a class="card-link text-primary" ><i class="fa fa-comment"></i> {{Post.PostComments.length}}</a></div>
+                <div class="row p-2">
+                    <div class="col">
+                        <a class="btn btn-primary btn-block" href="#!fullpost/{{Post._id}}">View Post / Comment</a></div>
+                </div>
+        </div>
+       
+    </div>
+</div>

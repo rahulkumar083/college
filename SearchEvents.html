@@ -1,0 +1,83 @@
+
+
+<div ng-controller="SearchEventsController" id="Body">
+    <div class="container mt-3" style="font-size: 12px;">
+        
+        <div class="row">
+            <div class="col d-flex align-items-center">
+                <h5 class="flex-fill mb-0">Events</h5>
+            </div>
+            <div class="col-auto d-flex align-items-center">
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-secondary active" ng-click="SetKeyword('')" for="r1">All<input type="radio" id="r1" value="" name="options" checked  /></label>
+                    <label class="btn btn-secondary" ng-click="SetKeyword(User.College)" for="r2">In-Campus<input  type="radio"  id="r2" value="{{User.College}}"  name="options" /></label>
+                </div>
+            </div>
+        </div>
+        
+        
+       
+        
+    </div>
+    <hr>
+    <div class="container mb-3">
+        <div class="row" style="margin-top: 12px;">
+            
+        </div>
+    </div>
+
+
+    <div class="container" style="margin-bottom: 75px;">
+        <div class="card" ng-repeat="Event in Events | filter : Keyword">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-auto"><img class="mr-2" src="assets/img/business_user128.png" style="width: 48px;" /></div>
+                    <div class="col">
+                        <h5 class="text-primary">{{Event.MentorName}}</h5><span>{{Event.MentorDescription}}</span></div>
+                </div>
+                <h6 style="margin-top: 19px;"><b>Eventing Time :</b> {{Event.EventDateTime}}</h6>
+                <h6 style="margin-top: 19px;"><b>Subject :</b> {{Event.Title}}</h6>
+                <h6 class="text-black-50 mb-2">Interested : {{Event.ParticipantUsers.length}}</h6>
+
+                <h6 style="margin-top: 19px;"><b>Description</b></h6>
+                <h6 class="text-secondary" style="margin-top: 19px;">{{Event.Description}}</h6>
+                <h6 style="margin-top: 19px;"><b>Link</b></h6>
+                <a target="blank" href="{{Event.EventLink}}">{{Event.EventLink}}</a>
+                <div class="row">
+                    <div class="col text-right">
+                        <button ng-hide="Event.EventParticipants.includes(User._id)" ng-click="ToggleParticipate(Event)" class="btn btn-primary" type="button">I Am In</button>
+                        <button ng-show="Event.EventParticipants.includes(User._id)" ng-click="ToggleParticipate(Event)" class="btn btn-warning" type="button">I Am Out</button></div>
+                   
+                      
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<div role="dialog" tabindex="-1" class="modal fade" id="EventModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4>Add Event</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group"><label>Host Name</label><input type="text"  ng-model="Event.MentorName" class="form-control p-2" style="height: 32px;" placeholder="Name of Mentor" /></div>
+                    <div class="form-group"><label>Host Description</label><input type="text"  ng-model="Event.MentorDescription" class="form-control p-2" style="height: 32px;" placeholder="Enter Mentor Short Info" /></div>
+                    <div class="form-group"><label>Event Date Time</label><input class="form-control p-2"  ng-model="Event.EventDateTime" type="datetime-local" style="height: 32px;" /></div>
+                    <div class="form-group"><label>Event Link</label><input type="text"  ng-model="Event.EventLink" class="form-control p-2" style="height: 32px;" placeholder="Add URL" /></div>
+                    <div class="form-group"><label>Subject</label><input type="text" ng-model="Event.Title" class="form-control p-2" style="height: 32px;" placeholder="Notice Heading / Subject" /></div>
+                    <div class="form-group"><label>Details</label><textarea ng-model="Event.Description"  class="border rounded form-control p-2" placeholder="Enter Details" rows="5"></textarea></div>
+                </form>
+            </div>
+            <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Close</button>
+                <button class="btn btn-primary" ng-click="AddNewEvent()" type="button">Save</button></div>
+        </div>
+    </div>
+</div>

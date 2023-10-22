@@ -1,0 +1,47 @@
+<div ng-controller="StudentsController" id="Body">
+    <div class="container" style="margin-top: 10px;">
+        <div class="row">
+            <div class="col d-flex align-items-center">
+                <h5>Students</h5>
+            </div>
+            <div class="col-auto d-flex align-items-center">
+                
+            </div>
+        </div>
+    </div>
+<hr/>
+<div class="container mb-2">
+    <div class="col">
+        <div class="input-group"><input ng-model="Keyword"  class="border rounded form-control" type="text" placeholder="Student Name / Mobile / Course" style="padding-left: 10px;" /></div>
+    </div>
+</div>
+
+<div class="container" style="margin-bottom: 85px;">
+    <div ng-repeat="User in Students | filter : Keyword" class="card mb-3" style="background: linear-gradient(rgb(255,255,255), rgb(241,241,241));">
+        <div class="card-body" style="padding: 10px;">
+            <div class="row">
+                <div class="col-auto"><img class="mr-1" src="assets/img/user.png" style="width: 30px;" /></div>
+                <div class="col d-flex align-items-center">
+                    <h6 class="text-warning mb-0">{{User.UserName}}</h6>
+                </div>
+            </div>
+            <hr />
+            <h6 class="text-muted card-subtitle mb-2">Course: {{User.Course}}</h6>
+            <h6 class="text-secondary">Mobile : {{User.Mobile}}</h6>
+            <h6 class="text-secondary">Email: {{User.Email}}</h6>
+            <h6 class="text-secondary">RollNumber: {{User.RollNumber}}</h6>
+            <h6 class="text-secondary">Verified : <span ng-class="(User.Status=='Active')?'text-success':'text-danger'">{{User.Status}}</span></h6>
+            <div class="row">
+                <div class="col">
+                    <div class="custom-control custom-switch">
+                        <input type="checkbox" ng-click="UpdateStatus(User)" ng-model="" ng-checked="User.Status=='Active'" class="custom-control-input" id="{{'formCheck-'+$index}}" />
+                        <label class="custom-control-label text-warning" for="{{'formCheck-'+$index}}">Toggle Active / Disable</label></div>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+</div>
+
+
+</div>

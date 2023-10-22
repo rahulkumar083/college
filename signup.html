@@ -1,0 +1,85 @@
+
+
+<div ng-controller="SignupController" id="Body">
+    <div class="container d-flex align-items-center" style="margin-top: 15px;">
+        <img src="assets/img/user.png" style="margin-right: 15px;width: 45px;">
+        <h5>New User</h5>
+    </div>
+    <hr>
+    <div class="container" style="margin-top: 20px;">
+        <form name="SignUpForm">
+            <div class="form-group d-flex align-items-center">
+                
+                <label for="UserName" style="margin-right: 15px;">User Type </label>
+                <div class="custom-control custom-control-inline custom-radio"><input ng-change="ChangeUserType()" ng-model="User.UserType" type="radio" value="Student" class="custom-control-input" id="formCheck-1" name="UserType" /><label class="custom-control-label" for="formCheck-1">Student</label></div>
+                <div class="custom-control custom-control-inline custom-radio"><input ng-change="ChangeUserType()" ng-model="User.UserType" type="radio" value="CR" class="custom-control-input" id="formCheck-2" name="UserType" /><label class="custom-control-label" for="formCheck-2">CR</label></div>
+            </div>
+            <div class="form-group">
+                <label for="UserName">Name</label>
+                <div class="input-group">
+                    <input class="form-control pl-5" type="text" id="UserName" name="UserName" required ng-model="User.UserName" placeholder="Enter Your Name" name="UserName">
+                    <div class="input-group-append"><span class="btn shadow-none" ng-class="SignUpForm.UserName.$valid?'text-success':'text-danger'"  type="button"><i class="fa fa-circle"></i></span></div>
+                </div>
+            </div>
+            
+            <div ng-show="User.UserType=='Student'" class="form-group"><label for="RollNumber">Roll Number</label>
+                <div class="input-group"><input type="text" class="form-control pl-3" ng-model="User.RollNumber" id="RollNumber" placeholder="Enter Your Roll Number" name="RollNumber" required />
+                    <div class="input-group-append"><button class="btn text-success shadow-none" ng-class="SignUpForm.RollNumber.$valid?'text-success':'text-danger'"  type="button"><i class="fa fa-circle"></i></button></div>
+                </div>
+            </div>
+           
+            <div ng-show="User.UserType=='CR'" class="form-group"><label for="EmployeeNumber">Employee Number</label>
+                <div class="input-group"><input type="text" class="form-control pl-3" ng-model="User.EmployeeNumber" id="EmployeeNumber" placeholder="Enter Your Employee Number" name="EmployeeNumber" required />
+                    <div class="input-group-append"><button class="btn text-success shadow-none" ng-class="SignUpForm.EmployeeNumber.$valid?'text-success':'text-danger'"  type="button"><i class="fa fa-circle"></i></button></div>
+                </div>
+            </div>
+            <div class="form-group"><label for="College">College</label>
+                <div class="input-group">
+                    <select class="form-control pl-3" ng-model="User.College" id="College"  name="College" required>
+                        <option ng-repeat="College in Colleges">{{College}}</option>
+                    </select>
+                    
+                    <div class="input-group-append"><button class="btn text-success shadow-none" ng-class="SignUpForm.College.$valid?'text-success':'text-danger'"  type="button"><i class="fa fa-circle"></i></button></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="UserName">Mobile</label>
+                <div class="input-group">
+                    <input class="form-control pl-5" type="text" ng-model="User.Mobile" name="Mobile" placeholder="Mobile Number" maxlength="10" pattern="[6789][0-9]{9}" required>
+                    <div class="input-group-append"><span class="btn text-danger shadow-none" ng-class="SignUpForm.Mobile.$valid?'text-success':'text-danger'"  type="button"><i class="fa fa-circle"></i></span></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="UserName">Email</label>
+                <div class="input-group">
+                    <input class="form-control pl-5" type="text" ng-model="User.Email" required name="Email" placeholder="Enter Email Address">
+                    <div class="input-group-append"><span class="btn text-danger shadow-none" ng-class="SignUpForm.Email.$valid?'text-success':'text-danger'"  type="button"><i class="fa fa-circle"></i></span></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="UserName">Password</label>
+                <div class="input-group">
+                    <input class="form-control pl-5" type="password" ng-model="User.PWD" required placeholder="# # #" name="PWD">
+                    <div class="input-group-append"><span class="btn text-danger shadow-none" ng-class="(SignUpForm.PWD.$valid && User.PWD == REPWD)?'text-success':'text-danger'"  type="button"><i class="fa fa-circle"></i></span></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="UserName">RE-Password</label>
+                <div class="input-group">
+                    <input class="form-control pl-5" type="password" placeholder="# # #" required name="REPWD" ng-model="REPWD">
+                    <div class="input-group-append"><span class="btn text-danger shadow-none" ng-class="(SignUpForm.REPWD.$valid && User.PWD == REPWD)?'text-success':'text-danger'"  type="button"><i class="fa fa-circle"></i></span></div>
+                </div>
+            </div>
+            
+            <!-- <div class="form-group d-flex align-items-center">
+                <label for="UserName" style="margin-right: 15px;">Gender</label>
+                <div class="custom-control custom-control-inline custom-radio"><input class="custom-control-input" type="radio" id="formCheck-1" checked ng-model="User.Gender" name="Gender" value="Male"><label class="custom-control-label" for="formCheck-1">Male</label></div>
+                <div class="custom-control custom-control-inline custom-radio"><input class="custom-control-input" type="radio" id="formCheck-2" name="Gender" ng-model="User.Gender" value="Female"><label class="custom-control-label" for="formCheck-2">Female</label></div>
+            </div> -->
+            <div class="form-group d-flex align-items-center">
+                <button class="btn btn-primary btn-block" type="button" ng-disabled="((SignUpForm.$invalid || User.PWD!=REPWD)   )" ng-click="CreateUser()"><i class="fa fa-check"></i>&nbsp;Save</button>
+            </div>
+        </form>
+    </div>
+    <hr>
+</div>

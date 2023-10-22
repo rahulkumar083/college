@@ -1,0 +1,48 @@
+<div ng-controller="CRController" id="Body">
+    <div class="container" style="margin-top: 10px;">
+        <div class="row">
+            <div class="col d-flex align-items-center">
+                <h5 class="text-warning">College Representatives</h5>
+            </div>
+        </div>
+    </div>
+<hr/>
+<div class="container mb-3">
+    <div class="col">
+        <div class="input-group"><input ng-model="Keyword" type="text" class="border rounded form-control" placeholder="Name / Mobile / Course" style="padding-left: 10px;" /></div>
+    </div>
+</div>
+
+
+
+<div class="container" style="margin-bottom: 85px;">
+    <div ng-repeat="CR in CRs  | filter:Keyword" class="card mb-3" style="background: linear-gradient(rgb(255,255,255), rgb(241,241,241));">
+        <div class="card-body" style="padding: 10px;">
+            <div class="row">
+                <div class="col-auto"><img class="mr-3" src="assets/img/user.png" style="width: 30px;" /></div>
+                <div class="col">
+                    <h6 class="d-flex align-items-center">{{CR.UserName}}</h6>
+                </div>
+            </div>
+            <hr />
+            
+            <h6 class="text-muted card-subtitle mb-2">College : {{CR.College}}</h6>
+            <h6 class="text-secondary">Mobile : {{CR.Mobile}}</h6>
+            <h6 class="text-secondary">Email: {{CR.Email}}</h6>
+            <h6 class="text-secondary">Verified : <span class="text-success">{{CR.Status}}</span></h6>
+            <div class="row">
+                <div class="col">
+                    <div class="custom-control custom-switch">
+                        <input type="checkbox" ng-click="UpdateStatus(CR)" ng-model="" ng-checked="CR.Status=='Active'" class="custom-control-input" id="{{'formCheck-'+$index}}" />
+                        <label class="custom-control-label" for="{{'formCheck-'+$index}}">Toggle Active / Disable</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+    
+    
+</div>
+
+</div>

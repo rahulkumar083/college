@@ -1,0 +1,55 @@
+
+
+<div ng-controller="PollsController" id="Body">
+    <div class="container" style="font-size: 12px;margin-top: 20px;">
+        <h5>Poll</h5>
+    </div>
+    <hr/>
+    <div class="container" >
+        <div class="card mt-3" ng-repeat="Poll in Polls">
+            <div class="card-body" >
+                <div class="row" style="margin-bottom: 15px;">
+                    <div class="col-auto" style="padding-right: 0px;padding-left: 0px;"><img class="rounded-circle border shadow-sm" src="assets/img/male_user.png" style="width: 50px;height: 50px;"></div>
+                    <div class="col">
+                        <h5 class="text-primary">Admin</h5><span>College Representative</span></div>
+                </div>
+                <h6 class="card-title">{{Poll.PollTitle}}</h6>
+                <div style="padding: 5px;"><span>{{Poll.Description}}</span></div>
+                <div class="row" style="margin-top: 10px;">
+                    <div class="col" style="padding-right: 0px;padding-left: 0px;">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Options [ Tap to select ]</th>
+                                        <th class="text-right">
+                                            <div>
+                                                <div class="modal fade" role="dialog" tabindex="-1" id="myModal">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h4>Add Comment</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                                                            <div class="modal-body"><textarea class="border rounded shadow-sm form-control"></textarea></div>
+                                                            <div class="modal-footer"><button class="btn btn-light" data-dismiss="modal" type="button">Close</button><button class="btn btn-primary" type="button">Save</button></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td ng-class="(Poll.SelectedOption==Poll.OptionA)?'bg-success text-white':''" ng-click="SelectOption(Poll,Poll.OptionA,'OptionA')"  colspan="2">{{Poll.OptionA}}</td></tr>
+                                    <tr><td ng-class="(Poll.SelectedOption==Poll.OptionB)?'bg-success text-white':''" ng-click="SelectOption(Poll,Poll.OptionB,'OptionB')"  colspan="2">{{Poll.OptionB}}</td></tr>
+                                    <tr><td ng-class="(Poll.SelectedOption==Poll.OptionC)?'bg-success text-white':''" ng-click="SelectOption(Poll,Poll.OptionC,'OptionC')"  colspan="2">{{Poll.OptionC}}</td></tr>
+                                    <tr><td ng-class="(Poll.SelectedOption==Poll.OptionD)?'bg-success text-white':''" ng-click="SelectOption(Poll,Poll.OptionD,'OptionD')"  colspan="2">{{Poll.OptionD}}</td></tr>
+                                    <tr><td colspan="2"><button class="btn btn-primary btn-block" ng-disabled="Poll.SelectedOption==null" ng-click="SubmitPoll(Poll)"  >Submit</button></td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
